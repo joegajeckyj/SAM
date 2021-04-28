@@ -57,6 +57,7 @@ Resources:
           LOG_LEVEL: !Ref pLogLevel
       CodeUri: ./src
       Role: !GetAtt rLambdaFunctionRole.Arn
+      Timeout: 5
       DeploymentPreference:
         Enabled: false
         Type: Linear10PercentEvery2Minutes
