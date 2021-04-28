@@ -113,6 +113,12 @@ Resources:
           Statement: 
           - Effect: "Allow"
             Action: 
+              - "codedeploy:PutLifecycleEventHookExecutionStatus"
+            Resource: "*"
+        - Version: "2012-10-17"
+          Statement: 
+          - Effect: "Allow"
+            Action: 
               - "lambda:InvokeFunction"
             Resource: !Ref rLambdaFunction.Version
       Runtime: nodejs12.x
