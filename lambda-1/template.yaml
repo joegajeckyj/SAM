@@ -61,7 +61,7 @@ Resources:
       DeploymentPreference:
         Type: Linear10PercentEvery2Minutes
         Hooks:
-          PreTraffic: !RefrPpreTrafficHook
+          PreTraffic: !Ref rPreTrafficHook
         Alarms:
         - !Ref rLambdaFunctionAliasErrorAlarm
         - !Ref rLambdaFunctionVersionErrorAlarm
@@ -114,7 +114,8 @@ Resources:
           - Effect: "Allow"
             Action: 
               - "codedeploy:PutLifecycleEventHookExecutionStatus"
-            Resource: "*"
+            Resource:
+              !Sub 'arn:aws:codedeploy:${AWS::Region}:${AWS::AccountId}:deploymentgroup:${ServerlessDeploymentApplication}/"*"
         - Version: "2012-10-17"
           Statement: 
           - Effect: "Allow"
