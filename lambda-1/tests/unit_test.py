@@ -16,7 +16,7 @@ def lambda_local(FunctionLogicalID):
                                         verify=False,
                                         config=Config(region_name = 'eu-west-2',
                                                     signature_version=botocore.UNSIGNED,
-                                                    read_timeout=1,
+                                                    read_timeout=10,
                                                     retries={'max_attempts': 0}))
 
     response = lambda_client.invoke(FunctionName=FunctionLogicalID)
