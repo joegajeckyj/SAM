@@ -58,6 +58,7 @@ Resources:
       CodeUri: ./src
       Role: !GetAtt rLambdaFunctionRole.Arn
       DeploymentPreference:
+        Enabled: false
         Type: Linear10PercentEvery2Minutes
         Hooks:
           PreTraffic: !RefrPpreTrafficHook
