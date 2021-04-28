@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Transform: 'AWS::Serverless-2016-10-31'
-Description: ECS Infrastructure Interview - Joe Gajeckyj
+Description: SAM Lambda Deploy created by Joe Gajeckyj
 
 Parameters:
   pLogLevel:
@@ -59,7 +59,6 @@ Resources:
       Role: !GetAtt rLambdaFunctionRole.Arn
       Timeout: 5
       DeploymentPreference:
-        Enabled: false
         Type: Linear10PercentEvery2Minutes
         Hooks:
           PreTraffic: !RefrPpreTrafficHook
