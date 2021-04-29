@@ -7,8 +7,8 @@
 
 # Introduction
   
-# Main Features
+## Main Features
   
-# Required Variables
+## Required Variables
 
 # Tests
