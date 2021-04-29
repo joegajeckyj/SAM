@@ -7,7 +7,7 @@ import os
 from botocore.config import Config
 
 FunctionLogicalID = "rLambdaFunction"
-ExpectedResponse = "Sucessfully executed Lambda-1!"
+ExpectedResponse = "Sucessfully executed Lambda-1 - v2!"
 
 def lambda_local(FunctionLogicalID):
     lambda_client = boto3.client('lambda',
