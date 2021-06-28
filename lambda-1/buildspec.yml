@@ -1,0 +1,36 @@
+version: 0.2
+phases:
+ install:
+  runtime-versions:
+   python: 3.8
+  commands:
+   - echo Entered the install phase...
+   - pip3 install pytest
+ pre_build:
+  on-failure: ABORT
+  commands:
+   - echo Entered the pre_build phase...
+   - cd $FUNCTION_NAME
+   - sam validate --template template.yaml
+   - sam local start-lambda & echo "Starting Local Lambda"
+   - python -m pytest --junitxml=tests/reports/pytest_report.xml
+ build: 
+  commands:
+   - echo Entered the build phase...
+   - echo Build started on `date`
+   - sam build --use-container --template template.yaml --parameter-overrides ParameterKey=FunctionName,ParameterValue=$FUNCTION_NAME
+ post_build:
+  commands:
+   - echo Entered the post_build phase...
+   - sam package --s3-bucket $BUCKET --output-template-file package.yaml
+   - echo Build completed on `date`
+reports:
+  pytest-reports:
+    files:
+      - "*.xml"
+    base-directory: $FUNCTION_NAME/tests/reports
+    file-format: JUNITXML
+artifacts:
+ files:
+  - package.yaml
+ base-directory: $FUNCTION_NAME
